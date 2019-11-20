@@ -1,6 +1,6 @@
 # ESP32-CAM-MJPEG-Stream-Decoder-and-Control-Library
 
-![alt text](https://2.bp.blogspot.com/-j8m4wGO5bAE/WpDzkmaTKVI/AAAAAAAALoc/MnTWAhAnpcMKqs0TdlQOqgn-J2-IZjtygCLcBGAs/s1600/DSC_0512.JPG?raw=true)
+![alt text](img url ?raw=true)
 
 ### Firmware
 
