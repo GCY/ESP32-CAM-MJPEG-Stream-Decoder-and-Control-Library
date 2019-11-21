@@ -7,11 +7,15 @@
 ## Easy-to-use
 
 ### Dependence
+- Opencv3 or 4
+- libcurl
 
+### Use
+Include "ESP32-CAM MJPEG Library" folder into your project. </br>
+- ESP32-CAM Library.h
+- ESP32-CAM Library.cpp
+   
 
-- Include "ESP32-CAM MJPEG Library" folder into your project.
-   - ESP32-CAM Library.h
-   - ESP32-CAM Library.cpp
    
 ### MJPEG Stream Format
 
