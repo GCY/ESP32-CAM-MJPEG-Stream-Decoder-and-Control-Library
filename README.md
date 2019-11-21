@@ -14,6 +14,20 @@
 Include "ESP32-CAM MJPEG Library" folder into your project. </br>
 - ESP32-CAM Library.h
 - ESP32-CAM Library.cpp
+
+```cpp
+#include "./ESP32-CAM MJPEG Library/ESP32-CAM Library.h"
+
+ESP32_CAM *esp32_cam = new ESP32_CAM(std::string( "192.168.1.254" ));   //ESP32-CAM local IP address
+
+esp32_cam->StartVideoStream();   // Start mjpeg video stream thread
+
+cv::Mat frame = esp32_cam->GetFrame(); // Get mjpeg frame
+if(!frame.empty()){
+   cv::imshow("Example",frame);  //Show mjpeg video stream
+}
+
+```
    
 
    
