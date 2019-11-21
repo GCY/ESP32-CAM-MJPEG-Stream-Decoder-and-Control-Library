@@ -4,7 +4,12 @@
 
 ### Firmware
 
-### Use
+### Easy-to-use
+
+- 1.Include "ESP32-CAM MJPEG Library" folder into your project.
+   - ESP32-CAM Library.h
+   - ESP32-CAM Library.cpp
+
 #### MJPEG Stream Format
 
 --WINBONDBOUDARY\r\n </br>
