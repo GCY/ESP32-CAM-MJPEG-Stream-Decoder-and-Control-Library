@@ -2,15 +2,18 @@
 
 ![alt text](img url ?raw=true)
 
-### Firmware
+## Firmware
 
-### Easy-to-use
+## Easy-to-use
 
-- 1.Include "ESP32-CAM MJPEG Library" folder into your project.
+### Dependence
+
+
+- Include "ESP32-CAM MJPEG Library" folder into your project.
    - ESP32-CAM Library.h
    - ESP32-CAM Library.cpp
-
-#### MJPEG Stream Format
+   
+### MJPEG Stream Format
 
 --WINBONDBOUDARY\r\n </br>
 Content-Type: image/jpeg\r\n\r\n </br>
@@ -20,9 +23,9 @@ JPEG Binary(0xFF,0xD8 ... 0xFF,0xD9) </br>
 . </br>
 --WINBONDBOUDARY\r\n </br>
 Content-Type: image/jpeg\r\n\r\n </br>
-JPEG Binary(0xFF,0xD8 ... 0xFF,0xD9) </br>
+JPEG Binary(0xFF,0xD8 ... 0xFF,0xD9) </br>   
 
-### Examples
+## Examples
 
 ## Reference
 
