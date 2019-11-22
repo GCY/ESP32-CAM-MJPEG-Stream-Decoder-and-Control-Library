@@ -108,6 +108,10 @@ JPEG Binary(0xFF,0xD8 ... 0xFF,0xD9)
 
 #### YOLO V3
 
+Weights: https://pjreddie.com/media/files/yolov3.weights
+Model: https://github.com/pjreddie/darknet/blob/master/cfg/yolov3.cfg?raw=true
+COCO: https://github.com/pjreddie/darknet/blob/master/data/coco.names?raw=true
+
 #### OpenPose
 
 ### ESP32-CAM Opencv Example
