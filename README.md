@@ -108,11 +108,15 @@ JPEG Binary(0xFF,0xD8 ... 0xFF,0xD9)
 
 #### YOLO V3
 
-Weights: https://pjreddie.com/media/files/yolov3.weights
-Model: https://github.com/pjreddie/darknet/blob/master/cfg/yolov3.cfg?raw=true
-COCO: https://github.com/pjreddie/darknet/blob/master/data/coco.names?raw=true
+Weights: https://pjreddie.com/media/files/yolov3.weights </br>
+Model: https://github.com/pjreddie/darknet/blob/master/cfg/yolov3.cfg?raw=true </br>
+COCO: https://github.com/pjreddie/darknet/blob/master/data/coco.names?raw=true </br>
 
 #### OpenPose
+
+Caffe Model: </br>
+https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/models/pose/mpi/pose_deploy_linevec.prototxt </br>
+ http://posefs1.perception.cs.cmu.edu/Users/ZheCao/pose_iter_146000.caffemodel </br>
 
 ### ESP32-CAM Opencv Example
 
