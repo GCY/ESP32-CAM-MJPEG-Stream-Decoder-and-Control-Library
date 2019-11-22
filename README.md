@@ -32,6 +32,8 @@ if(!frame.empty()){
 ```
    
 
+### Command Post and ESP32-CAM Get
+
    
 ### MJPEG Stream Format
 
@@ -62,3 +64,20 @@ https://github.com/CMU-Perceptual-Computing-Lab/openpose
 https://github.com/spmallick/learnopencv/tree/master/OpenPose-Multi-Person
 
 https://randomnerdtutorials.com/esp32-cam-video-streaming-face-recognition-arduino-ide/
+
+Licensing
+=======
+Copyright (C) 2019  TonyGUO <https://github.com/GCY>.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
