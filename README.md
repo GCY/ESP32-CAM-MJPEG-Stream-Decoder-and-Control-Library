@@ -65,7 +65,7 @@ int ESP32_CAM::SendStream(CURL *curl_object)
 }
 ```
 
-"192.168.1.254/control?var=framesize&val=8", "192.168.1.254" is ESP32-CAM IP Address setting from:
+"192.168.1.254/control?var=framesize&val=8", "192.168.1.254" is ESP32-CAM IP address setting from:
 
 ```cpp
 // Set your Static IP address
