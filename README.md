@@ -55,6 +55,7 @@ int ESP32_CAM::SendStream(CURL *curl_object)
 ```
 
 "192.168.1.254/control?var=framesize&val=8", "192.168.1.254" is ESP32-CAM IP Address setting from:
+
 ```cpp
 // Set your Static IP address
 IPAddress local_IP(192, 168, 1, 254);
@@ -64,7 +65,8 @@ WiFi.begin(ssid, password);
 WiFi.config(local_IP, gateway, subnet);
 ```
 
-"/control?var=framesize&val=8", 
+In this example, "/control?var=framesize&val=8" POST /control API and setting parameter "framesize" value is "8"(FRAMESIZE_SVGA 800x600).
+
 ### MJPEG Stream Format
 
 --WINBONDBOUDARY\r\n </br>
