@@ -65,7 +65,7 @@ WiFi.begin(ssid, password);
 WiFi.config(local_IP, gateway, subnet);
 ```
 
-In this example, "/control?var=framesize&val=8" POST /control API and setting parameter "framesize" value is "8"(FRAMESIZE_SVGA 800x600).
+In this example, "/control?var=framesize&val=8" POST /control API and set parameter "framesize" value is "8"(FRAMESIZE_SVGA 800x600).
 
 ### MJPEG Stream Format
 
