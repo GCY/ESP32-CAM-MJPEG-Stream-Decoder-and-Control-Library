@@ -73,6 +73,9 @@ In this case MJPEG stream boundary is fixed length, for split into a MJPEG strea
 
 ```cpp
 const char VIDEO_STREAM_INTERLEAVE[] = "--WINBONDBOUDARY\r\nContent-Type: image/jpeg\r\n\r\n";
+
+const char JPEG_SOI_MARKER_FIRST_BYTE = 0xFF;
+const char JPEG_SOI_MARKER_SECOND_BYTE = 0xD8;
 ```
 
 ```cpp
