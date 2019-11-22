@@ -71,18 +71,21 @@ In this example, "/control?var=framesize&val=8" POST /control API and set parame
 
 In this case MJPEG stream boundary is fixed length, for split into a MJPEG stream of JPEG binary(byte), each frame JPEG binary with cv::imdecode to decode to RGB format. </br>
 
-Content-type: multipart/x-mixed-replace; boundary=WINBONDBOUDARY</br>
-
 ```cpp
---WINBONDBOUDARY\r\n </br>
-Content-Type: image/jpeg\r\n\r\n </br>
-JPEG Binary(0xFF,0xD8 ... 0xFF,0xD9) </br>
-. </br>
-. </br>
-. </br>
---WINBONDBOUDARY\r\n </br>
-Content-Type: image/jpeg\r\n\r\n </br>
-JPEG Binary(0xFF,0xD8 ... 0xFF,0xD9) </br>   
+Content-type: multipart/x-mixed-replace; boundary=WINBONDBOUDARY
+
+--WINBONDBOUDARY\r\n
+Content-Type: image/jpeg\r\n\r\n
+JPEG Binary(0xFF,0xD8 ... 0xFF,0xD9)
+--WINBONDBOUDARY\r\n 
+Content-Type: image/jpeg\r\n\r\n 
+JPEG Binary(0xFF,0xD8 ... 0xFF,0xD9) 
+...
+...
+...
+--WINBONDBOUDARY\r\n 
+Content-Type: image/jpeg\r\n\r\n 
+JPEG Binary(0xFF,0xD8 ... 0xFF,0xD9) 
 ```
 ## Examples
 
