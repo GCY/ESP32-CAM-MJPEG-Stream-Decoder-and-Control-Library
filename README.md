@@ -34,9 +34,37 @@ if(!frame.empty()){
 ```
    
 
-### Command Post and ESP32-CAM Get
+### Command POST and ESP32-CAM GER
 
-   
+In cmd_handler, "var" is variable name, "val" is value of variable, curl POST command is:
+
+```cpp
+int ESP32_CAM::SendStream(CURL *curl_object)
+{
+   long return_code;
+   CURLcode response;
+
+   curl_easy_setopt(curl_object,CURLOPT_URL,"192.168.1.254/control?var=framesize&val=7");
+
+   response = curl_easy_perform(curl_object);
+
+   response = curl_easy_getinfo(curl_object, CURLINFO_RESPONSE_CODE, &return_code);
+
+   return (int)return_code;
+}
+```
+
+"192.168.1.254/control?var=framesize&val=8", "192.168.1.254" is ESP32-CAM IP Address setting from:
+```cpp
+// Set your Static IP address
+IPAddress local_IP(192, 168, 1, 254);
+// Set your Gateway IP address
+IPAddress gateway(192, 168, 1, 1);
+WiFi.begin(ssid, password);  
+WiFi.config(local_IP, gateway, subnet);
+```
+
+"/control?var=framesize&val=8", 
 ### MJPEG Stream Format
 
 --WINBONDBOUDARY\r\n </br>
