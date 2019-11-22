@@ -42,7 +42,7 @@ if(!frame.empty()){
 ```
    
 
-### Command POST and ESP32-CAM GER
+### Command POST and ESP32-CAM GET
 
 In cmd_handler, "var" is variable name, "val" is value of variable, curl POST command is:
 
