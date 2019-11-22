@@ -7,8 +7,8 @@
 ## Easy-to-use
 
 ### Dependence
-- Opencv3 or 4
-- libcurl
+- Opencv 3 or 4
+- libcurl 7
 
 ### Use
 Include "ESP32-CAM MJPEG Library" folder into your project. </br>
