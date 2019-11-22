@@ -10,6 +10,8 @@
 - Opencv 3 or 4
 - libcurl 7
 
+- wxWidgets 2.8.12(for wxESP32-CAM example)
+
 ### Use
 Include "ESP32-CAM MJPEG Library" folder into your project. </br>
 - ESP32-CAM Library.h
