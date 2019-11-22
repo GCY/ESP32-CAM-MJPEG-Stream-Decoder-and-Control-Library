@@ -1,5 +1,7 @@
 # ESP32-CAM-MJPEG-Stream-Decoder-and-Control-Library
 
+This library is MJPEG stream decoder with libcurl and OpenCV written in C/C++.
+
 ![alt text](img url ?raw=true)
 
 ## Firmware
@@ -15,7 +17,7 @@ static const char* _STREAM_PART = "Content-Type: image/jpeg\r\n\r\n";
 ## Easy-to-use
 
 ### Dependence
-- Opencv 3 or 4
+- OpenCV 3 or 4
 - libcurl 7
 
 - wxWidgets 2.8.12(for wxESP32-CAM example)
@@ -106,6 +108,8 @@ JPEG Binary(0xFF,0xD8 ... 0xFF,0xD9)
 
 ### wxESP32-CAM
 
+This example is wxWidgets GUI for the library demo, and integrate DNN Computer Vision use cases(YOLO V3, OpenPose).  </br>
+
 - YOLO V3
   - Weights: https://pjreddie.com/media/files/yolov3.weights </br>
   - Model: https://github.com/pjreddie/darknet/blob/master/cfg/yolov3.cfg?raw=true </br>
@@ -116,6 +120,8 @@ JPEG Binary(0xFF,0xD8 ... 0xFF,0xD9)
   - http://posefs1.perception.cs.cmu.edu/Users/ZheCao/pose_iter_146000.caffemodel </br>
 
 ### ESP32-CAM Opencv Example
+
+OpenCV highgui MJPEG stream player.
 
 ## Reference
 
