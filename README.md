@@ -2,9 +2,6 @@
 
 ESP32-CAM is inexpensive MJPEG stream embedded device, include OV2640 and ESP32 SoC, this library is MJPEG stream decoder with libcurl and OpenCV written in C/C++.
 
-
-![alt text](https://github.com/GCY/ESP32-CAM-MJPEG-Stream-Decoder-and-Control-Library/blob/master/res/YOLO%20V3.png?raw=true)
-
 ## Firmware
 
 Modify the following code in "CameraWebServer.ino" file, that is MJPEG stream boundary.
@@ -108,6 +105,15 @@ JPEG Binary(0xFF,0xD8 ... 0xFF,0xD9)
 ## Examples
 
 ### wxESP32-CAM
+
+#### Mac OS X
+- make
+
+![alt text](https://github.com/GCY/ESP32-CAM-MJPEG-Stream-Decoder-and-Control-Library/blob/master/res/YOLO%20V3.png?raw=true)
+
+#### Windows 10
+
+#### DNN File
 
 This example is wxWidgets GUI for the library demo, and integrate DNN Computer Vision use cases(YOLO V3, OpenPose).  </br>
 
