@@ -3,7 +3,7 @@
 ESP32-CAM is inexpensive MJPEG stream embedded device, include OV2640 and ESP32 SoC, this library is MJPEG stream decoder with libcurl and OpenCV written in C/C++.
 
 
-![alt text](img url ?raw=true)
+![alt text](https://github.com/GCY/ESP32-CAM-MJPEG-Stream-Decoder-and-Control-Library/blob/master/res/YOLO%20V3.png?raw=true)
 
 ## Firmware
 
