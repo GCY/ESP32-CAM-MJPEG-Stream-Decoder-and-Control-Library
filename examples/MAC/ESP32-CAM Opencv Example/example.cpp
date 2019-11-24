@@ -4,9 +4,6 @@
 #include <iostream>
 #include <curl/curl.h>
 
-#include <unistd.h>
-#include <pthread.h>
-
 #include "ESP32-CAM Library.h"
 
 typedef enum {
