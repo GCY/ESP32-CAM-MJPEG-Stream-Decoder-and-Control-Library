@@ -114,6 +114,10 @@ JPEG Binary(0xFF,0xD8 ... 0xFF,0xD9)
 
 #### Windows 10
 
+- Open *sln project
+- Select "Release x64"
+- Rebuild
+
 ![alt text](https://github.com/GCY/ESP32-CAM-MJPEG-Stream-Decoder-and-Control-Library/blob/master/res/Win10%20GUI.PNG?raw=true)
 
 #### DNN File
@@ -132,6 +136,15 @@ This example is wxWidgets GUI for the library demo, and integrate DNN Computer V
 ### ESP32-CAM Opencv Example
 
 OpenCV highgui MJPEG stream player.
+
+#### Mac OS X
+- cd /examples/MAC/ESP32-CAM Opencv Example/
+- make
+
+#### Windows 10
+- Open *sln project
+- Select "Release x64"
+- Rebuild
 
 ## Reference
 
