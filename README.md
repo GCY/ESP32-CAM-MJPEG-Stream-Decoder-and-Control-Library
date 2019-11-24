@@ -110,9 +110,11 @@ JPEG Binary(0xFF,0xD8 ... 0xFF,0xD9)
 - cd /examples/MAC/wxESP32-CAM/
 - make
 
-![alt text](https://github.com/GCY/ESP32-CAM-MJPEG-Stream-Decoder-and-Control-Library/blob/master/res/YOLO%20V3.png?raw=true)
+![alt text](https://github.com/GCY/ESP32-CAM-MJPEG-Stream-Decoder-and-Control-Library/blob/master/res/MAC%20GUI.png?raw=true)
 
 #### Windows 10
+
+![alt text](https://github.com/GCY/ESP32-CAM-MJPEG-Stream-Decoder-and-Control-Library/blob/master/res/Win10%20GUI.PNG?raw=true)
 
 #### DNN File
 
