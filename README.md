@@ -115,9 +115,21 @@ JPEG Binary(0xFF,0xD8 ... 0xFF,0xD9)
 
 #### Windows 10
 
-- Open *sln project
-- Select "Release x64"
-- Rebuild
+Build x64 version wxWidgets and libcurl</br>
+- 『x64 Native Tools Command Prompt for VS 2017/2019』, open the program as an administrator.
+- Build x64 libcurl 7.67.0
+  - cd "./libcurl-7.67.0/winbuild"
+  - run "buildconf.bat"
+  - nmake /f Makefile.vc mode=static VC=15 MACHINE=x64 DEBUG=no
+  - static link libcurl_a.lib, Ws2_32.lib, Wldap32.lib, winmm.lib, Crypt32.lib, Normaliz.lib
+- Build x64 wxWidgets 3.1.2
+  - cd "build/msw"
+  - nmake /f makefile.vc /ls RUNTIME_LIBS=static SHARED=0 COMPILER_VERSION=141 TARGET_CPU=X64 BUILD=release
+  - nmake /f makefile.vc /ls RUNTIME_LIBS=static SHARED=1 COMPILER_VERSION=141 TARGET_CPU=X64 BUILD=release
+- Build wxESP32-CAM
+  - Open *.sln project
+  - Select "Release x64"
+  - Rebuild
 
 ![alt text](https://github.com/GCY/ESP32-CAM-MJPEG-Stream-Decoder-and-Control-Library/blob/master/res/Win10%20GUI.PNG?raw=true)
 
