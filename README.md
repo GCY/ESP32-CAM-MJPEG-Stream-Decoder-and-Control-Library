@@ -168,10 +168,14 @@ OpenCV highgui MJPEG stream player.
 - cd /examples/MAC/ESP32-CAM Opencv Example/
 - make
 
+![alt text](https://github.com/GCY/ESP32-CAM-MJPEG-Stream-Decoder-and-Control-Library/blob/master/res/MAC%20OpenCV.png?raw=true)
+
 #### Windows 10
 - Open *.sln project
 - Select "Release x64"
 - Rebuild
+
+![alt text](https://github.com/GCY/ESP32-CAM-MJPEG-Stream-Decoder-and-Control-Library/blob/master/res/Win10%20OpenCV.PNG?raw=true)
 
 ## Reference
 
