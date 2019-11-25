@@ -29,6 +29,20 @@ Include "ESP32-CAM MJPEG Library" folder into your project. </br>
 ```cpp
 #include "./ESP32-CAM MJPEG Library/ESP32-CAM Library.h"
 
+typedef enum {
+    FRAMESIZE_QQVGA,    // 160x120
+    FRAMESIZE_QQVGA2,   // 128x160
+    FRAMESIZE_QCIF,     // 176x144
+    FRAMESIZE_HQVGA,    // 240x176
+    FRAMESIZE_QVGA,     // 320x240
+    FRAMESIZE_CIF,      // 400x296
+    FRAMESIZE_VGA,      // 640x480
+    FRAMESIZE_SVGA,     // 800x600
+    FRAMESIZE_XGA,      // 1024x768
+    FRAMESIZE_SXGA,     // 1280x1024
+    FRAMESIZE_UXGA      // 1600x1200
+} framesize_t;
+
 ESP32_CAM *esp32_cam = new ESP32_CAM(std::string( "192.168.1.254" ));   //ESP32-CAM local IP address
 
 esp32_cam->SetResolution(FRAMESIZE_SVGA); // Set mjpeg video stream resolution
@@ -161,19 +175,19 @@ OpenCV highgui MJPEG stream player.
 
 ## Reference
 
-https://github.com/GCY/wxRovio
+ - https://github.com/GCY/wxRovio
 
-https://github.com/tobybreckon/roviolib
+ - https://github.com/tobybreckon/roviolib
 
-https://pjreddie.com/darknet/yolo/
+ - https://pjreddie.com/darknet/yolo/
 
-https://github.com/spmallick/learnopencv/tree/master/ObjectDetection-YOLO
+ - https://github.com/spmallick/learnopencv/tree/master/ObjectDetection-YOLO
 
-https://github.com/CMU-Perceptual-Computing-Lab/openpose
+ - https://github.com/CMU-Perceptual-Computing-Lab/openpose
 
-https://github.com/spmallick/learnopencv/tree/master/OpenPose-Multi-Person
+ - https://github.com/spmallick/learnopencv/tree/master/OpenPose-Multi-Person
 
-https://randomnerdtutorials.com/esp32-cam-video-streaming-face-recognition-arduino-ide/
+ - https://randomnerdtutorials.com/esp32-cam-video-streaming-face-recognition-arduino-ide/
 
 Licensing
 =======
