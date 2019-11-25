@@ -155,7 +155,7 @@ OpenCV highgui MJPEG stream player.
 - make
 
 #### Windows 10
-- Open *sln project
+- Open *.sln project
 - Select "Release x64"
 - Rebuild
 
