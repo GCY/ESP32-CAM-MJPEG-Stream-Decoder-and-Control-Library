@@ -121,7 +121,7 @@ JPEG Binary(0xFF,0xD8 ... 0xFF,0xD9)
 
 ### wxESP32-CAM
 
-#### Mac OS X 
+#### Mac OS X or Linux
 - "cd /examples/MAC/wxESP32-CAM/"
 - make
 
@@ -164,7 +164,7 @@ This example is wxWidgets GUI for the library demo, and integrate DNN Computer V
 
 OpenCV highgui MJPEG stream player.
 
-#### Mac OS X
+#### Mac OS X or Linux
 - cd /examples/MAC/ESP32-CAM Opencv Example/
 - make
 
