@@ -121,7 +121,7 @@ JPEG Binary(0xFF,0xD8 ... 0xFF,0xD9)
 
 ### wxESP32-CAM
 
-#### Mac OS X
+#### Mac OS X 
 - "cd /examples/MAC/wxESP32-CAM/"
 - make
 
