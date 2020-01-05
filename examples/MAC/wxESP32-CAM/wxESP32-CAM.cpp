@@ -77,7 +77,8 @@ enum{
    ID_ROTATE_90,
    ID_ROTATE_180,
    ID_ROTATE_270,
-   ID_RESUME
+   ID_RESUME,
+   ID_FLASH_CONTROL
 };
 
 class App:public wxApp
@@ -104,6 +105,7 @@ class Frame:public wxFrame
       void OnRotate180(wxCommandEvent&);
       void OnRotate270(wxCommandEvent&);
       void OnResume(wxCommandEvent&);
+      void OnFlashControl(wxCommandEvent&);
 
       void OnSetResolution(wxCommandEvent&);
 
@@ -145,6 +147,8 @@ class Frame:public wxFrame
       bool vertical_flag;
       bool horizontal_flag;
       int rotate_select;
+
+      bool flash_flag;
 
       static const uint32_t IMAGE_WIDTH = 800;
       static const uint32_t IMAGE_HEIGHT = 600;
@@ -188,6 +192,7 @@ DECLARE_APP(App)
    EVT_MENU(ID_ROTATE_180, Frame::OnRotate180)
    EVT_MENU(ID_ROTATE_270, Frame::OnRotate270)
    EVT_MENU(ID_RESUME, Frame::OnResume)
+   EVT_MENU(ID_FLASH_CONTROL, Frame::OnFlashControl)
    EVT_BUTTON(ID_START_MJPEG_STREAM,Frame::OnStartMjpegStream)
    EVT_BUTTON(ID_STOP_MJPEG_STREAM,Frame::OnStopMjpegStream)
    EVT_CHOICE(ID_RESOLUTION, Frame::OnSetResolution)
@@ -216,6 +221,8 @@ Frame::Frame(const wxString &title):wxFrame(NULL,wxID_ANY,title,wxDefaultPositio
    vertical_flag = false;
    horizontal_flag = false;
    rotate_select = 0;
+
+   flash_flag = false;
 }
 
 Frame::~Frame()
@@ -249,10 +256,14 @@ void Frame::CreateUI()
    image->AppendSeparator();
    image->Append(ID_RESUME,wxT("Resume"),wxT("Resume"));
 
+   wxMenu *control = new wxMenu;
+   control->Append(ID_FLASH_CONTROL,wxT("Flash On_Off"),wxT("Flash LED On_Off"));
+
    wxMenuBar *bar = new wxMenuBar;
 
    bar->Append(file,wxT("File"));
    bar->Append(image,wxT("Image"));
+   bar->Append(control,wxT("Control"));
    SetMenuBar(bar);
 
    wxBoxSizer *top = new wxBoxSizer(wxVERTICAL);
@@ -406,6 +417,12 @@ void Frame::OnResume(wxCommandEvent &event)
    vertical_flag = false;
    horizontal_flag = false;
    rotate_select = 0;
+}
+
+void Frame::OnFlashControl(wxCommandEvent &event)
+{
+   flash_flag ^= true;
+   esp32_cam->FlashControl(flash_flag);
 }
 
 

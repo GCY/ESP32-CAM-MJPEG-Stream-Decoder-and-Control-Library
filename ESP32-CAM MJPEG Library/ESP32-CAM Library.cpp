@@ -68,6 +68,16 @@ void ESP32_CAM::SetResolution(int resolution)
    SendStream(curl_command,command + resolution_str);
 }
 
+void ESP32_CAM::FlashControl(bool on)
+{
+   if(on == true){
+      SendStream(curl_command,std::string("/led?var=flash&val=1"));
+   }
+   else{
+      SendStream(curl_command,std::string("/led?var=flash&val=0"));
+   }
+}
+
 void ESP32_CAM::VideoStreamThread()
 {
    curl_easy_setopt(curl_video,CURLOPT_WRITEFUNCTION,CURLWriteMemoryVideoFrameCallback);

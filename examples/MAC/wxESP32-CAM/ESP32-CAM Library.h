@@ -77,6 +77,8 @@ class ESP32_CAM
 
       void SetResolution(int);
 
+      void FlashControl(bool);
+
 
       void VideoStreamThread();
 

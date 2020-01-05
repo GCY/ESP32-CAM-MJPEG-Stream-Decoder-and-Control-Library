@@ -19,11 +19,11 @@ const char* ssid = "Your AP SSID";
 const char* password = "Your AP Password";
 
 // Set your Static IP address
-//IPAddress local_IP(192, 168, 110, 254);
-IPAddress local_IP(192, 168, 1, 254);
+IPAddress local_IP(192, 168, 110, 254);
+//IPAddress local_IP(192, 168, 1, 254);
 // Set your Gateway IP address
-//IPAddress gateway(192, 168, 110, 1);
-IPAddress gateway(192, 168, 1, 1);
+IPAddress gateway(192, 168, 110, 1);
+//IPAddress gateway(192, 168, 1, 1);
 
 IPAddress subnet(255, 255, 255, 0);
 
