@@ -92,7 +92,7 @@ In this example, "/control?var=framesize&val=8" POST /control API and set parame
 
 API FlashControl(bool), Flash LED turn on or off "/led?var=flash&val=1", val=1 is on, val=0 is off.
 
-![](https://j.gifs.com/3Q3L2A.gif) 
+ ![](https://j.gifs.com/3Q3L2A.gif)
 
 ### MJPEG Stream Format
 
