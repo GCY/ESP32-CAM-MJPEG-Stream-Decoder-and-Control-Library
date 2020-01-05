@@ -90,7 +90,7 @@ WiFi.config(local_IP, gateway, subnet);
 
 In this example, "/control?var=framesize&val=8" POST /control API and set parameter "framesize" value is "7"(FRAMESIZE_SVGA 800x600).
 
-Flash LED turn on or off "/led?var=flash&val=1", val=1 is on, val=0 is off.</br>
+API FlashControl(bool), Flash LED turn on or off "/led?var=flash&val=1", val=1 is on, val=0 is off.</br>
 
 
 ![](https://j.gifs.com/3Q3L2A.gif) 
