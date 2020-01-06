@@ -93,7 +93,7 @@ In this example, "/control?var=framesize&val=8" POST /control API and set parame
 API FlashControl(bool), Flash LED turn on or off "/led?var=flash&val=1", val=1 is on, val=0 is off.
 
 
-![](https://j.gifs.com/NLG3L2.gif) 
+![](https://github.com/GCY/ESP32-CAM-MJPEG-Stream-Decoder-and-Control-Library/blob/master/res/flash%20on%20off.gif) 
 
 
 ### MJPEG Stream Format
