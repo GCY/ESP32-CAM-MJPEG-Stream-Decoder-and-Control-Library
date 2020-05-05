@@ -221,6 +221,15 @@ OpenCV highgui MJPEG stream player.
  - https://github.com/spmallick/learnopencv/tree/master/OpenPose-Multi-Person
 
  - https://randomnerdtutorials.com/esp32-cam-video-streaming-face-recognition-arduino-ide/
+ 
+### Pinout Diagram
+The following image shows the pinout diagram for the ESP32-CAM AI-Thinker.
+![alt text](https://github.com/GCY/ESP32-CAM-MJPEG-Stream-Decoder-and-Control-Library/blob/master/res/ESP32-CAM%20pinout.png?raw=true)
+
+### Schematic Diagram
+The following figure shows the schematic diagram for the ESP32-CAM.
+
+![alt text](https://github.com/GCY/ESP32-CAM-MJPEG-Stream-Decoder-and-Control-Library/blob/master/res/ESP32-CAM%20schematic%20diagram.png?raw=true)
 
 Licensing
 =======
