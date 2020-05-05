@@ -44,6 +44,7 @@ void* VideoStreamThreadPasser(void*);
 DWORD VideoStreamThreadPasser(LPVOID);
 void* memmem(const void*,size_t,const void*,size_t);
 #endif
+size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp);
 size_t CURLWriteMemoryVideoFrameCallback(void*,size_t,size_t,void*);
 void* CURLRealloc(void*,size_t);
 
@@ -90,6 +91,7 @@ class ESP32_CAM
 
       size_t GetFrameSize(){return frame.frame_size;}
 
+      std::string GetRSSI();
 
       cv::Mat GetFrame();
 

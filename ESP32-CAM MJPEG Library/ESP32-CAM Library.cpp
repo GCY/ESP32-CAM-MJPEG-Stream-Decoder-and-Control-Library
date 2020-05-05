@@ -116,6 +116,19 @@ int ESP32_CAM::SendStream(CURL *curl_object,std::string function_url)
    return (int)return_code;
 }
 
+std::string ESP32_CAM::GetRSSI()
+{
+   std::string buffer;
+
+   curl_easy_setopt(curl_command,CURLOPT_WRITEFUNCTION,WriteCallback);
+   curl_easy_setopt(curl_command,CURLOPT_WRITEDATA,&buffer); 
+
+   if(SendStream(curl_command,std::string("/RSSI"))){
+   }  
+
+   return buffer;
+}
+
 cv::Mat ESP32_CAM::GetFrame()
 {
    cv::Mat return_data;
@@ -186,6 +199,12 @@ void* memmem(const void *buf,size_t buf_len,const void *byte_sequence,size_t byt
    return NULL;
 }
 #endif
+
+size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
+{
+    ((std::string*)userp)->append((char*)contents, size * nmemb);
+    return size * nmemb;
+}
 
 size_t CURLWriteMemoryVideoFrameCallback(void *ptr,size_t size,size_t nmemb,void *data)
 {

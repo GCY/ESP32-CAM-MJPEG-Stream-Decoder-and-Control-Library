@@ -1,5 +1,6 @@
 #include "esp_camera.h"
 #include <WiFi.h>
+#include "define.h"
 
 //
 // WARNING!!! Make sure that you have either selected ESP32 Wrover Module,
@@ -26,6 +27,8 @@ IPAddress gateway(192, 168, 110, 1);
 //IPAddress gateway(192, 168, 1, 1);
 
 IPAddress subnet(255, 255, 255, 0);
+
+int rssi = 0;
 
 void startCameraServer();
 
@@ -127,10 +130,11 @@ void setup() {
 
   Serial.print("Camera Ready! Use 'http://");
   Serial.print(WiFi.localIP());
-  Serial.println("' to connect");
+  Serial.println("' to connect"); 
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  delay(10000);
+  rssi = WiFi.RSSI();
+  Serial.println(rssi);
 }

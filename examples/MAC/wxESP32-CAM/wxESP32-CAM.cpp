@@ -227,16 +227,16 @@ Frame::Frame(const wxString &title):wxFrame(NULL,wxID_ANY,title,wxDefaultPositio
 
 Frame::~Frame()
 {
-   if(esp32_cam != NULL){
-      esp32_cam->StopVideoStream();
-      delete esp32_cam;
-      esp32_cam = NULL;
-   }   
-
    if(thread != NULL){
       thread->Delete();
       thread = NULL;
    }
+
+   if(esp32_cam != NULL){
+      esp32_cam->StopVideoStream();
+      //delete esp32_cam;
+      //esp32_cam = NULL;
+   }   
    Close();
 }
 
@@ -326,6 +326,11 @@ void Frame::CreateUI()
 
 void Frame::OnStartMjpegStream(wxCommandEvent &event)
 {
+   if(esp32_cam != NULL){
+      delete esp32_cam;
+      esp32_cam = NULL;
+   }   
+
    esp32_cam = new ESP32_CAM(std::string(ip_ctrl->GetValue().mb_str()));
 
    esp32_cam->StartVideoStream();
@@ -349,8 +354,8 @@ void Frame::OnStopMjpegStream(wxCommandEvent &event)
 {
    if(esp32_cam != NULL){
       esp32_cam->StopVideoStream();
-      delete esp32_cam;
-      esp32_cam = NULL;
+      //delete esp32_cam;
+      //esp32_cam = NULL;
    }
 
    if(thread != NULL){
@@ -430,7 +435,9 @@ void Frame::Display()
 {
    wxString str;
 
-   str.Printf(wxT(" ,JPEG Size: %.2fKb ,Opencv%d"),(esp32_cam->GetFrameSize() / 1024.0f),CV_MAJOR_VERSION);
+   std::string rssi = esp32_cam->GetRSSI();
+
+   str.Printf(wxT(" ,JPEG Size: %.2fKb ,RSSI:%s ,Opencv%d"),(esp32_cam->GetFrameSize() / 1024.0f),rssi,CV_MAJOR_VERSION);
    SetStatusText(wxDateTime::Now().Format() + str);
 
 

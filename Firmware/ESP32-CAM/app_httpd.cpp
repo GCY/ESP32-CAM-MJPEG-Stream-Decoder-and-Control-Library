@@ -639,6 +639,19 @@ static esp_err_t status_handler(httpd_req_t *req){
     return httpd_resp_send(req, json_response, strlen(json_response));
 }
 
+static esp_err_t RSSI_handler(httpd_req_t *req){
+    static char json_response[1024];
+
+    char * p = json_response;
+
+    p+=sprintf(p, "%ddB", rssi);
+    *p++ = 0;
+    httpd_resp_set_type(req, "application/json");
+    httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
+    return httpd_resp_send(req, json_response, strlen(json_response));
+}
+
+
 static esp_err_t index_handler(httpd_req_t *req){
     httpd_resp_set_type(req, "text/html");
     httpd_resp_set_hdr(req, "Content-Encoding", "gzip");
@@ -678,7 +691,14 @@ void startCameraServer(){
         .method    = HTTP_GET,
         .handler   = led_handler,
         .user_ctx  = NULL
-    };    
+    };
+
+    httpd_uri_t RSSI_uri = {
+        .uri       = "/RSSI",
+        .method    = HTTP_GET,
+        .handler   = RSSI_handler,
+        .user_ctx  = NULL
+    };           
 
     httpd_uri_t capture_uri = {
         .uri       = "/capture",
@@ -718,6 +738,7 @@ void startCameraServer(){
         httpd_register_uri_handler(camera_httpd, &index_uri);
         httpd_register_uri_handler(camera_httpd, &cmd_uri);
         httpd_register_uri_handler(camera_httpd, &led_uri);
+        httpd_register_uri_handler(camera_httpd, &RSSI_uri);
         httpd_register_uri_handler(camera_httpd, &status_uri);
         httpd_register_uri_handler(camera_httpd, &capture_uri);
     }
