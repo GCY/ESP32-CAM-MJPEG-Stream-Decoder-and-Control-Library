@@ -96,6 +96,29 @@ API FlashControl(bool), Flash LED turn on or off "/led?var=flash&val=1", val=1 i
 ![](https://github.com/GCY/ESP32-CAM-MJPEG-Stream-Decoder-and-Control-Library/blob/master/res/flash%20on%20off.gif) 
 
 
+### Receive ESP32-CAM Page Content
+
+Set curl_easy_setopt parameter CURLOPT_WRITEFUNCTION and CURLOPT_WRITEDATA  for writing received data. 
+
+```cpp
+std::string ESP32_CAM::GetRSSI()
+{
+   std::string buffer;
+
+   curl_easy_setopt(curl_command,CURLOPT_WRITEFUNCTION,WriteCallback);
+   curl_easy_setopt(curl_command,CURLOPT_WRITEDATA,&buffer); 
+
+   if(SendStream(curl_command,std::string("/RSSI"))){
+   }  
+
+   return buffer;
+}
+```
+
+![alt text](https://github.com/GCY/ESP32-CAM-MJPEG-Stream-Decoder-and-Control-Library/blob/master/res/rssi%20page.png?raw=true)
+
+![alt text](https://github.com/GCY/ESP32-CAM-MJPEG-Stream-Decoder-and-Control-Library/blob/master/res/receive%20rssi%20page%20content.png?raw=true)
+
 ### MJPEG Stream Format
 
 In this case MJPEG stream boundary is fixed length, for split into a MJPEG stream of JPEG binary(byte), each frame JPEG binary with cv::imdecode decode to RGB format. </br>
