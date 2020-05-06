@@ -44,7 +44,7 @@ void* VideoStreamThreadPasser(void*);
 DWORD VideoStreamThreadPasser(LPVOID);
 void* memmem(const void*,size_t,const void*,size_t);
 #endif
-size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp);
+size_t WriteCallback(void*,size_t,size_t,void*);
 size_t CURLWriteMemoryVideoFrameCallback(void*,size_t,size_t,void*);
 void* CURLRealloc(void*,size_t);
 
@@ -107,6 +107,7 @@ class ESP32_CAM
       VideoStreamMemory frame;
       CURL *curl_video;
       CURL *curl_command;
+      CURL *curl_rssi;
       const std::string base_url;
 };
 #endif

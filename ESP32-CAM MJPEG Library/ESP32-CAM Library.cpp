@@ -10,6 +10,12 @@ ESP32_CAM::ESP32_CAM(const std::string base_url):base_url(base_url)
    curl_easy_setopt(curl_command,CURLOPT_NOPROGRESS,1);
    curl_easy_setopt(curl_command,CURLOPT_TIMEOUT,COMMUNICATION_TIMEOUT);
 
+   curl_rssi = curl_easy_init();
+
+   curl_easy_setopt(curl_rssi,CURLOPT_VERBOSE,0);
+   curl_easy_setopt(curl_rssi,CURLOPT_NOPROGRESS,1);
+   curl_easy_setopt(curl_rssi,CURLOPT_TIMEOUT,COMMUNICATION_TIMEOUT);   
+
    curl_video = curl_easy_init();
    curl_easy_setopt(curl_video,CURLOPT_VERBOSE,0);
    curl_easy_setopt(curl_video,CURLOPT_NOPROGRESS,1);
@@ -120,10 +126,10 @@ std::string ESP32_CAM::GetRSSI()
 {
    std::string buffer;
 
-   curl_easy_setopt(curl_command,CURLOPT_WRITEFUNCTION,WriteCallback);
-   curl_easy_setopt(curl_command,CURLOPT_WRITEDATA,&buffer); 
+   curl_easy_setopt(curl_rssi,CURLOPT_WRITEFUNCTION,WriteCallback);
+   curl_easy_setopt(curl_rssi,CURLOPT_WRITEDATA,&buffer); 
 
-   if(SendStream(curl_command,std::string("/RSSI"))){
+   if(SendStream(curl_rssi,std::string("/RSSI"))){
    }  
 
    return buffer;
