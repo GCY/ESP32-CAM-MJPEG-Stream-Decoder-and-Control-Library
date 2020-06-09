@@ -50,8 +50,8 @@ esp32_cam->SetResolution(FRAMESIZE_SVGA); // Set mjpeg video stream resolution
 esp32_cam->StartVideoStream();   // Start mjpeg video stream thread
 
 //cv::Mat frame = esp32_cam->GetFrame(); // Get mjpeg frame
-cv::Mat frame; // "operator >>" call GetFrame()
-esp32_cam >> frame;
+cv::Mat frame; 
+esp32_cam >> frame;  // "operator >>" call GetFrame(), like cv::VideoCapture call read() 
 if(!frame.empty()){
    cv::imshow("Example",frame);  //Show mjpeg video stream
 }
