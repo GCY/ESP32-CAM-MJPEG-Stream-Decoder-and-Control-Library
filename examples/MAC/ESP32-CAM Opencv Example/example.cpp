@@ -32,7 +32,9 @@ int main(int argc,char**argv){
    esp32_cam->SetResolution(FRAMESIZE_SVGA);
 
    while (1) {
-      cv::Mat frame = esp32_cam->GetFrame();
+      //cv::Mat frame = esp32_cam->GetFrame();
+      cv::Mat frame;
+      esp32_cam >> frame;
       if(!frame.empty()){
 	 std::cout << esp32_cam->GetFrameSize()/1024.0f << "kb" << std::endl;
 	 cv::imshow("Example",frame);

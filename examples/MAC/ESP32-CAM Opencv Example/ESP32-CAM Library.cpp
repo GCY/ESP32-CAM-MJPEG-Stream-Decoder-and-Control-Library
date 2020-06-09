@@ -10,6 +10,12 @@ ESP32_CAM::ESP32_CAM(const std::string base_url):base_url(base_url)
    curl_easy_setopt(curl_command,CURLOPT_NOPROGRESS,1);
    curl_easy_setopt(curl_command,CURLOPT_TIMEOUT,COMMUNICATION_TIMEOUT);
 
+   curl_rssi = curl_easy_init();
+
+   curl_easy_setopt(curl_rssi,CURLOPT_VERBOSE,0);
+   curl_easy_setopt(curl_rssi,CURLOPT_NOPROGRESS,1);
+   curl_easy_setopt(curl_rssi,CURLOPT_TIMEOUT,COMMUNICATION_TIMEOUT);   
+
    curl_video = curl_easy_init();
    curl_easy_setopt(curl_video,CURLOPT_VERBOSE,0);
    curl_easy_setopt(curl_video,CURLOPT_NOPROGRESS,1);
@@ -30,6 +36,8 @@ ESP32_CAM::ESP32_CAM(const std::string base_url):base_url(base_url)
 
 ESP32_CAM::~ESP32_CAM()
 {
+   curl_easy_cleanup(curl_command);
+   curl_easy_cleanup(curl_rssi);
    curl_easy_cleanup(curl_video);
    ClearFrame();
 }
@@ -66,6 +74,16 @@ void ESP32_CAM::SetResolution(int resolution)
 
    std::string command("/control?var=framesize&val=");
    SendStream(curl_command,command + resolution_str);
+}
+
+void ESP32_CAM::FlashControl(bool on)
+{
+   if(on == true){
+      SendStream(curl_command,std::string("/led?var=flash&val=1"));
+   }
+   else{
+      SendStream(curl_command,std::string("/led?var=flash&val=0"));
+   }
 }
 
 void ESP32_CAM::VideoStreamThread()
@@ -106,6 +124,19 @@ int ESP32_CAM::SendStream(CURL *curl_object,std::string function_url)
    return (int)return_code;
 }
 
+std::string ESP32_CAM::GetRSSI()
+{
+   std::string buffer;
+
+   curl_easy_setopt(curl_rssi,CURLOPT_WRITEFUNCTION,WriteCallback);
+   curl_easy_setopt(curl_rssi,CURLOPT_WRITEDATA,&buffer); 
+
+   if(SendStream(curl_rssi,std::string("/RSSI"))){
+   }  
+
+   return buffer;
+}
+
 cv::Mat ESP32_CAM::GetFrame()
 {
    cv::Mat return_data;
@@ -123,7 +154,16 @@ cv::Mat ESP32_CAM::GetFrame()
    return return_data;
 }
 
-
+ESP32_CAM& ESP32_CAM::operator >> (CV_OUT cv::Mat &dst)
+{
+   dst = GetFrame();
+   return *this;   
+}
+ESP32_CAM* operator >> (ESP32_CAM *esp32_cam,CV_OUT cv::Mat &dst)
+{ 
+   (*esp32_cam) >> dst;
+   return esp32_cam; 
+}
 
 #ifdef _MAC_
 void* VideoStreamThreadPasser(void* args)
@@ -176,6 +216,12 @@ void* memmem(const void *buf,size_t buf_len,const void *byte_sequence,size_t byt
    return NULL;
 }
 #endif
+
+size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
+{
+    ((std::string*)userp)->append((char*)contents, size * nmemb);
+    return size * nmemb;
+}
 
 size_t CURLWriteMemoryVideoFrameCallback(void *ptr,size_t size,size_t nmemb,void *data)
 {

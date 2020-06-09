@@ -95,6 +95,8 @@ class ESP32_CAM
 
       cv::Mat GetFrame();
 
+      ESP32_CAM& operator >> (CV_OUT cv::Mat&);
+
 
    private:
 #ifdef _MAC_
@@ -110,4 +112,7 @@ class ESP32_CAM
       CURL *curl_rssi;
       const std::string base_url;
 };
+
+extern ESP32_CAM* operator >> (ESP32_CAM*,CV_OUT cv::Mat&);
+
 #endif

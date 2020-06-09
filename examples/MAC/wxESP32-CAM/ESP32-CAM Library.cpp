@@ -36,6 +36,8 @@ ESP32_CAM::ESP32_CAM(const std::string base_url):base_url(base_url)
 
 ESP32_CAM::~ESP32_CAM()
 {
+   curl_easy_cleanup(curl_command);
+   curl_easy_cleanup(curl_rssi);
    curl_easy_cleanup(curl_video);
    ClearFrame();
 }
@@ -152,7 +154,16 @@ cv::Mat ESP32_CAM::GetFrame()
    return return_data;
 }
 
-
+ESP32_CAM& ESP32_CAM::operator >> (CV_OUT cv::Mat &dst)
+{
+   dst = GetFrame();
+   return *this;   
+}
+ESP32_CAM* operator >> (ESP32_CAM *esp32_cam,CV_OUT cv::Mat &dst)
+{ 
+   (*esp32_cam) >> dst;
+   return esp32_cam; 
+}
 
 #ifdef _MAC_
 void* VideoStreamThreadPasser(void* args)

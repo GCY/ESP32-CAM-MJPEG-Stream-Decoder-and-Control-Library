@@ -30,7 +30,7 @@ const int VIDEO_STREAM_STOP_WAIT_TIME = 1000;
 const int COMMUNICATION_TIMEOUT = 180;
 
 const int VIDEO_STREAM_BUFFER_MAX_SIZE = 512000; //500k max.
-const int VIDEO_STREAM_BUFFER_MIN_SIZE = 1024; //1k min. QQVGA ≈ 3Kb
+const int VIDEO_STREAM_BUFFER_MIN_SIZE = 1024; //1k min. QQVGA 160x120 ≈ 3Kb.
 
 /**/
 const char JPEG_SOI_MARKER_FIRST_BYTE = 0xFF;
@@ -44,6 +44,7 @@ void* VideoStreamThreadPasser(void*);
 DWORD VideoStreamThreadPasser(LPVOID);
 void* memmem(const void*,size_t,const void*,size_t);
 #endif
+size_t WriteCallback(void*,size_t,size_t,void*);
 size_t CURLWriteMemoryVideoFrameCallback(void*,size_t,size_t,void*);
 void* CURLRealloc(void*,size_t);
 
@@ -77,6 +78,8 @@ class ESP32_CAM
 
       void SetResolution(int);
 
+      void FlashControl(bool);
+
 
       void VideoStreamThread();
 
@@ -88,8 +91,11 @@ class ESP32_CAM
 
       size_t GetFrameSize(){return frame.frame_size;}
 
+      std::string GetRSSI();
 
       cv::Mat GetFrame();
+
+      ESP32_CAM& operator >> (CV_OUT cv::Mat&);
 
 
    private:
@@ -103,6 +109,10 @@ class ESP32_CAM
       VideoStreamMemory frame;
       CURL *curl_video;
       CURL *curl_command;
+      CURL *curl_rssi;
       const std::string base_url;
 };
+
+extern ESP32_CAM* operator >> (ESP32_CAM*,CV_OUT cv::Mat&);
+
 #endif

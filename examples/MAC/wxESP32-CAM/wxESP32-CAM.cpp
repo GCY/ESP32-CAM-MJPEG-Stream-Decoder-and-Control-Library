@@ -443,7 +443,9 @@ void Frame::Display()
 
 
    cv::Mat src,dst,blob;
-   src = esp32_cam->GetFrame();
+   //src = esp32_cam->GetFrame();
+   //*esp32_cam >> src;
+   esp32_cam >> src;
    if(src.empty()){
       return;
    }
