@@ -2,7 +2,7 @@
 
 
 
-ESP32_CAM::ESP32_CAM(const std::string base_url):base_url(base_url)
+ESP32_CAM::ESP32_CAM(const std::string base_url) noexcept:base_url(base_url)
 {
    curl_command = curl_easy_init();
 
@@ -21,20 +21,20 @@ ESP32_CAM::ESP32_CAM(const std::string base_url):base_url(base_url)
    curl_easy_setopt(curl_video,CURLOPT_NOPROGRESS,1);
    curl_easy_setopt(curl_video,CURLOPT_TIMEOUT,COMMUNICATION_TIMEOUT);
 
-   frame.memory = NULL;
+   frame.memory = nullptr;
    frame.size = 0;
-   frame.buffer = NULL;
+   frame.buffer = nullptr;
    frame.buffer_size = 0;
 
 #ifdef _MAC_
-   pthread_mutex_init(&(frame.completed),NULL);
+   pthread_mutex_init(&(frame.completed),nullptr);
 #endif
 #ifdef _WIN10_
-   frame.completed = CreateMutex(NULL, FALSE, NULL);
+   frame.completed = CreateMutex(nullptr,FALSE,nullptr);
 #endif
 }
 
-ESP32_CAM::~ESP32_CAM()
+ESP32_CAM::~ESP32_CAM() noexcept
 {
    curl_easy_cleanup(curl_command);
    curl_easy_cleanup(curl_rssi);
@@ -42,17 +42,17 @@ ESP32_CAM::~ESP32_CAM()
    ClearFrame();
 }
 
-void ESP32_CAM::StartVideoStream()
+void ESP32_CAM::StartVideoStream() noexcept
 {
 #ifdef _MAC_
-   if(pthread_create(&(video_stream_handle),NULL,VideoStreamThreadPasser,(void*)this)){}
+   if(pthread_create(&(video_stream_handle),nullptr,VideoStreamThreadPasser,(void*)this)){}
 #endif
 #ifdef _WIN10_
-   video_stream_handle = CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)VideoStreamThreadPasser,(LPVOID)this,0,NULL);
+   video_stream_handle = CreateThread(nullptr,0,(LPTHREAD_START_ROUTINE)VideoStreamThreadPasser,(LPVOID)this,0,nullptr);
 #endif
 }
 
-void ESP32_CAM::StopVideoStream()
+void ESP32_CAM::StopVideoStream() noexcept
 {
 #ifdef _MAC_
    if(pthread_cancel(video_stream_handle)){
@@ -66,7 +66,7 @@ void ESP32_CAM::StopVideoStream()
 #endif
 }     
 
-void ESP32_CAM::SetResolution(int resolution)
+void ESP32_CAM::SetResolution(int resolution) noexcept
 {
    std::stringstream ss;
    ss << resolution;
@@ -76,7 +76,7 @@ void ESP32_CAM::SetResolution(int resolution)
    SendStream(curl_command,command + resolution_str);
 }
 
-void ESP32_CAM::FlashControl(bool on)
+void ESP32_CAM::FlashControl(bool on) noexcept
 {
    if(on == true){
       SendStream(curl_command,std::string("/led?var=flash&val=1"));
@@ -86,7 +86,7 @@ void ESP32_CAM::FlashControl(bool on)
    }
 }
 
-void ESP32_CAM::VideoStreamThread()
+void ESP32_CAM::VideoStreamThread() noexcept
 {
    curl_easy_setopt(curl_video,CURLOPT_WRITEFUNCTION,CURLWriteMemoryVideoFrameCallback);
    curl_easy_setopt(curl_video,CURLOPT_WRITEDATA,(void*) &frame);
@@ -95,22 +95,22 @@ void ESP32_CAM::VideoStreamThread()
    }
 }
 
-void ESP32_CAM::ClearFrame()
+void ESP32_CAM::ClearFrame() noexcept
 {
-   if ((frame.size > 0) && (frame.memory != NULL)){
+   if ((frame.size > 0) && (frame.memory != nullptr)){
       frame.size = 0;
       free(frame.memory);
-      frame.memory = NULL;
+      frame.memory = nullptr;
    }
 
-   if ((frame.buffer_size > 0) && (frame.buffer != NULL)){
+   if ((frame.buffer_size > 0) && (frame.buffer != nullptr)){
       frame.buffer_size = 0;
       free(frame.buffer);
-      frame.buffer = NULL;
+      frame.buffer = nullptr;
    }
 }
 
-int ESP32_CAM::SendStream(CURL *curl_object,std::string function_url)
+int ESP32_CAM::SendStream(CURL *curl_object,std::string function_url) noexcept
 {
    long return_code;
    CURLcode response;
@@ -124,7 +124,7 @@ int ESP32_CAM::SendStream(CURL *curl_object,std::string function_url)
    return (int)return_code;
 }
 
-std::string ESP32_CAM::GetRSSI()
+std::string ESP32_CAM::GetRSSI() noexcept
 {
    std::string buffer;
 
@@ -137,7 +137,7 @@ std::string ESP32_CAM::GetRSSI()
    return buffer;
 }
 
-cv::Mat ESP32_CAM::GetFrame()
+cv::Mat ESP32_CAM::GetFrame() noexcept
 {
    cv::Mat return_data;
 
@@ -154,11 +154,15 @@ cv::Mat ESP32_CAM::GetFrame()
    return return_data;
 }
 
-ESP32_CAM& ESP32_CAM::operator >> (CV_OUT cv::Mat &dst)
+ESP32_CAM& ESP32_CAM::operator >> (CV_OUT cv::Mat &dst) noexcept
 {
    dst = GetFrame();
    return *this;   
 }
+
+
+
+
 ESP32_CAM* operator >> (ESP32_CAM *esp32_cam,CV_OUT cv::Mat &dst)
 { 
    (*esp32_cam) >> dst;
@@ -179,7 +183,8 @@ void* VideoStreamThreadPasser(void* args)
 }
 #endif
 #ifdef _WIN10_
-DWORD VideoStreamThreadPasser(LPVOID lpParameter) {
+DWORD VideoStreamThreadPasser(LPVOID lpParameter)
+{
    ESP32_CAM *esp32_cam = (ESP32_CAM*)lpParameter;
    while(true)
    {
@@ -201,7 +206,7 @@ void* memmem(const void *buf,size_t buf_len,const void *byte_sequence,size_t byt
 
    while (byte_sequence_len <= (buf_len - (p - bf))){
       UINT b = *bs & 0xFF;
-      if ((p = (BYTE *) memchr(p, b, buf_len - (p - bf))) != NULL){
+      if ((p = (BYTE *) memchr(p, b, buf_len - (p - bf))) != nullptr){
 	 if ((memcmp(p, byte_sequence, byte_sequence_len)) == 0){
 	    return p;
 	 }
@@ -213,7 +218,7 @@ void* memmem(const void *buf,size_t buf_len,const void *byte_sequence,size_t byt
 	 break;
       }
    }
-   return NULL;
+   return nullptr;
 }
 #endif
 
@@ -301,7 +306,7 @@ size_t CURLWriteMemoryVideoFrameCallback(void *ptr,size_t size,size_t nmemb,void
       if(frame->memory){
 	 free(frame->memory);
       }
-      frame->memory = NULL;
+      frame->memory = nullptr;
 
       size_t frominterleave = buffer_size_temp - beforeinterleave;
       frame->memory = (char*)CURLRealloc(frame->memory,frominterleave + 1);
@@ -322,7 +327,7 @@ size_t CURLWriteMemoryVideoFrameCallback(void *ptr,size_t size,size_t nmemb,void
 	 if (frame->memory){
 	    free(frame->memory);
 	 }
-	 frame->memory = NULL;
+	 frame->memory = nullptr;
       }
 
       frame->memory = (char*)CURLRealloc(frame->memory,(frame->size) + buffer_size_temp + 1);
@@ -338,7 +343,7 @@ size_t CURLWriteMemoryVideoFrameCallback(void *ptr,size_t size,size_t nmemb,void
    if(frame->buffer){
       frame->buffer_size = 0;
       free(frame->buffer);
-      frame->buffer = NULL;
+      frame->buffer = nullptr;
    }
 
    return realsize;

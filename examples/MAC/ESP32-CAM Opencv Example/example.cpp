@@ -39,10 +39,11 @@ int main(int argc,char**argv){
 	 std::cout << esp32_cam->GetFrameSize()/1024.0f << "kb" << std::endl;
 	 cv::imshow("Example",frame);
       }
-      if (cv::waitKey(30) == 27) // If 'esc' key is pressed, break loop.
-      {
+
+      if (cv::waitKey(30) == 27){ // If 'esc' key is pressed, break loop.
 	 esp32_cam->StopVideoStream();
 	 break;
       }
+
    }
 }

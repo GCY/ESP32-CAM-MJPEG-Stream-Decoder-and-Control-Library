@@ -67,35 +67,40 @@ typedef struct
 class ESP32_CAM
 {
    public:
-      ESP32_CAM(const std::string);
-      ~ESP32_CAM();
+      ESP32_CAM(const std::string) noexcept;
+      ~ESP32_CAM() noexcept;
+
+      ESP32_CAM(const ESP32_CAM&) = delete;
+      ESP32_CAM(const ESP32_CAM&&) = delete;
+      ESP32_CAM& operator=(const ESP32_CAM&) = delete;
+      ESP32_CAM& operator=(const ESP32_CAM&&) = delete;
 
 
-      void StartVideoStream();
+      void StartVideoStream() noexcept;
 
 
-      void StopVideoStream();
+      void StopVideoStream() noexcept;
 
-      void SetResolution(int);
+      void SetResolution(int) noexcept;
 
-      void FlashControl(bool);
-
-
-      void VideoStreamThread();
+      void FlashControl(bool) noexcept;
 
 
-      void ClearFrame();
+      void VideoStreamThread() noexcept;
 
 
-      int SendStream(CURL*,std::string);
+      void ClearFrame() noexcept;
 
-      size_t GetFrameSize(){return frame.frame_size;}
 
-      std::string GetRSSI();
+      int SendStream(CURL*,std::string) noexcept;
 
-      cv::Mat GetFrame();
+      size_t GetFrameSize() noexcept {return frame.frame_size;}
 
-      ESP32_CAM& operator >> (CV_OUT cv::Mat&);
+      std::string GetRSSI() noexcept;
+
+      cv::Mat GetFrame() noexcept;
+
+      ESP32_CAM& operator >> (CV_OUT cv::Mat&) noexcept;
 
 
    private:

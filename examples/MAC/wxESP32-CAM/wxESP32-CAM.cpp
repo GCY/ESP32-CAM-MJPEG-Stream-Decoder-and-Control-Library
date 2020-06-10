@@ -208,7 +208,7 @@ bool App::OnInit()
    return true;
 }
 
-Frame::Frame(const wxString &title):wxFrame(NULL,wxID_ANY,title,wxDefaultPosition,wxSize(IMAGE_WIDTH+100,IMAGE_HEIGHT+100)/*wxSize(800,600)*/,wxMINIMIZE_BOX | wxCLOSE_BOX | wxCAPTION | wxSYSTEM_MENU)
+Frame::Frame(const wxString &title):wxFrame(nullptr,wxID_ANY,title,wxDefaultPosition,wxSize(IMAGE_WIDTH+100,IMAGE_HEIGHT+100)/*wxSize(800,600)*/,wxMINIMIZE_BOX | wxCLOSE_BOX | wxCAPTION | wxSYSTEM_MENU)
 {
    CreateUI();
 
@@ -216,8 +216,8 @@ Frame::Frame(const wxString &title):wxFrame(NULL,wxID_ANY,title,wxDefaultPositio
 
    InitOpenPose();
 
-   esp32_cam = NULL;
-   thread = NULL;
+   esp32_cam = nullptr;
+   thread = nullptr;
 
    vertical_flag = false;
    horizontal_flag = false;
@@ -228,15 +228,15 @@ Frame::Frame(const wxString &title):wxFrame(NULL,wxID_ANY,title,wxDefaultPositio
 
 Frame::~Frame()
 {
-   if(thread != NULL){
+   if(thread != nullptr){
       thread->Delete();
-      thread = NULL;
+      thread = nullptr;
    }
 
-   if(esp32_cam != NULL){
+   if(esp32_cam != nullptr){
       esp32_cam->StopVideoStream();
       //delete esp32_cam;
-      //esp32_cam = NULL;
+      //esp32_cam = nullptr;
    }   
    Close();
 }
@@ -327,9 +327,9 @@ void Frame::CreateUI()
 
 void Frame::OnStartMjpegStream(wxCommandEvent &event)
 {
-   if(esp32_cam != NULL){
+   if(esp32_cam != nullptr){
       delete esp32_cam;
-      esp32_cam = NULL;
+      esp32_cam = nullptr;
    }   
 
    esp32_cam = new ESP32_CAM(std::string(ip_ctrl->GetValue().mb_str()));
@@ -338,9 +338,9 @@ void Frame::OnStartMjpegStream(wxCommandEvent &event)
 
    esp32_cam->SetResolution(resolution->GetCurrentSelection());
 
-   if(thread != NULL){
+   if(thread != nullptr){
       thread->Delete();
-      thread = NULL;
+      thread = nullptr;
    }   
    thread = new Thread(this);
    thread->Create();
@@ -353,15 +353,15 @@ void Frame::OnStartMjpegStream(wxCommandEvent &event)
 
 void Frame::OnStopMjpegStream(wxCommandEvent &event)
 {
-   if(esp32_cam != NULL){
+   if(esp32_cam != nullptr){
       esp32_cam->StopVideoStream();
       //delete esp32_cam;
-      //esp32_cam = NULL;
+      //esp32_cam = nullptr;
    }
 
-   if(thread != NULL){
+   if(thread != nullptr){
       thread->Delete();
-      thread = NULL;
+      thread = nullptr;
    }
    start_button->Enable(true);
    stop_button->Enable(false);  
@@ -388,7 +388,7 @@ void Frame::OnSetResolution(wxCommandEvent &event)
       } framesize_t;
       */
 
-   if(esp32_cam != NULL){
+   if(esp32_cam != nullptr){
       esp32_cam->SetResolution(resolution->GetCurrentSelection());
    }
 }
@@ -950,5 +950,5 @@ void* Thread::Entry()
       //Sleep(25);
    }
 
-   return NULL;
+   return nullptr;
 }
