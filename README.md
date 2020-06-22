@@ -3,7 +3,9 @@
 ESP32-CAM is an inexpensive MJPEG stream embedded device.
 The library is MJPEG stream decoder based on libcurl and OpenCV, and written in C/C++.
 
-![](https://github.com/GCY/ESP32-CAM-MJPEG-Stream-Decoder-and-Control-Library/blob/master/res/demo.gif) 
+<p align="center">
+    <img src="https://github.com/GCY/ESP32-CAM-MJPEG-Stream-Decoder-and-Control-Library/blob/master/res/demo.gif">
+</p>
 
 ## Firmware
 
@@ -96,9 +98,9 @@ In this example, "/control?var=framesize&val=8" POST /control API and set parame
 
 API FlashControl(bool), Flash LED turn on or off "/led?var=flash&val=1", val=1 is on, val=0 is off.
 
-
-![](https://github.com/GCY/ESP32-CAM-MJPEG-Stream-Decoder-and-Control-Library/blob/master/res/flash%20on%20off.gif) 
-
+<p align="center">
+    <img src="https://github.com/GCY/ESP32-CAM-MJPEG-Stream-Decoder-and-Control-Library/blob/master/res/flash%20on%20off.gif">
+</p>
 
 ### Receive ESP32-CAM Page Content
 
