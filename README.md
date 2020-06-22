@@ -3,6 +3,8 @@
 ESP32-CAM is an inexpensive MJPEG stream embedded device.
 The library is MJPEG stream decoder based on libcurl and OpenCV, and written in C/C++.
 
+![](https://github.com/GCY/ESP32-CAM-MJPEG-Stream-Decoder-and-Control-Library/blob/master/res/demo.gif) 
+
 ## Firmware
 
 Modify the following code in "CameraWebServer.ino" file, that is MJPEG stream boundary.
