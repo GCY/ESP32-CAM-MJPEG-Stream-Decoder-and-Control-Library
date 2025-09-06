@@ -186,6 +186,13 @@ Build x64 version wxWidgets and libcurl</br>
 
 This example is wxWidgets GUI for the library demo, and integrate DNN Computer Vision use cases(YOLO V3, OpenPose).  </br>
 
+2025.09.06
+- Google  Drive
+  - https://drive.google.com/drive/folders/1Ni5po9_sCTo7nfBxEJvBWAE7aVPQ1dz4 </br>
+  - https://huggingface.co/camenduru/openpose/tree/f5bb0c0a16060ac8b373472a5456c76bd68eb202 </br>
+  - https://huggingface.co/spaces/Epitech/Scarecrow/tree/main </br>
+
+Broken Links
 - YOLO V3
   - Weights: https://pjreddie.com/media/files/yolov3.weights </br>
   - Model: https://github.com/pjreddie/darknet/blob/master/cfg/yolov3.cfg?raw=true </br>
