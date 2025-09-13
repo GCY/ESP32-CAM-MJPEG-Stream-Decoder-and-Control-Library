@@ -7,25 +7,29 @@
 #include "ESP32-CAM Library.h"
 
 typedef enum {
+   FRAMESIZE_96X96,    // 96x96
    FRAMESIZE_QQVGA,    // 160x120
-   FRAMESIZE_QQVGA2,   // 128x160
+   FRAMESIZE_128X128,    // 128x128
    FRAMESIZE_QCIF,     // 176x144
    FRAMESIZE_HQVGA,    // 240x176
+   FRAMESIZE_240X240,  // 240x240
    FRAMESIZE_QVGA,     // 320x240
+   FRAMESIZE_320X320,  // 320x320
    FRAMESIZE_CIF,      // 400x296
+   FRAMESIZE_HVGA,     // 480x320
    FRAMESIZE_VGA,      // 640x480
    FRAMESIZE_SVGA,     // 800x600
    FRAMESIZE_XGA,      // 1024x768
+   FRAMESIZE_HD,       // 1280x720
    FRAMESIZE_SXGA,     // 1280x1024
    FRAMESIZE_UXGA,     // 1600x1200
-   FRAMESIZE_QXGA,     // 2048*1536
    FRAMESIZE_INVALID
 } framesize_t;
 
 int main(int argc,char**argv){
 
 
-   ESP32_CAM *esp32_cam = new ESP32_CAM(std::string("192.168.110.254"));
+   ESP32_CAM *esp32_cam = new ESP32_CAM(std::string("192.168.110.48"));
 
    esp32_cam->StartVideoStream();
 
@@ -46,4 +50,12 @@ int main(int argc,char**argv){
       }
 
    }
+   /* 
+      cv::VideoCapture cap("http://192.168.110.48:81/stream");
+      cv::Mat frame;
+      while (cap.read(frame)) {
+      cv::imshow("ESP32", frame);
+      if (cv::waitKey(30) == 27) break; // ESC to quit
+      }
+      */  
 }
